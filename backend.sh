@@ -34,7 +34,6 @@ curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip 
 echo $?
 
 echo -e "${color} Extracting Downloaded Content \e[om"
-cd /app
 unzip /tmp/backend.zip &>>log_file
 echo $?
 
