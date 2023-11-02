@@ -1,5 +1,5 @@
 log_file=/tmp/expense.log
-color="\e[31m"
+color="\e[36m"
 
 echo -e "${color} Installing Nginx \e[om"
 
