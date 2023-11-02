@@ -1,41 +1,55 @@
-echo -e "\e[36m Disable Old Nodejs \e[om"
+log_file=/tmp/expense.log
+color="\e[36m"
 
-dnf module disable nodejs -y
+echo -e "${color} Disable Old Nodejs \e[om"
+dnf module disable nodejs -y &>>log_file
+echo $?
 
-echo -e "\e[36m Enable Nodejs Version 18 \e[om"
-dnf module enable nodejs:18 -y
+echo -e "${color} Enable Nodejs Version 18 \e[om"
+dnf module enable nodejs:18 -y &>log_file
+echo $?
 
-echo -e "\e[36M Installing Nodejs \e[om"
-dnf install nodejs -y
+echo -e "${color} Installing Nodejs \e[om"
+dnf install nodejs -y &>>log_file
+echo $?
 
-echo -e "\e[36m Copying Backend Service \e[om"
-cp backend.service /etc/systemd/system/backend.service
+echo -e "${color} Copying Backend Service \e[om"
+cp backend.service /etc/systemd/system/backend.service &>>log_file
+echo $?
 
-echo -e "\e[36 Add User \e[om"
-useradd expense
+echo -e "${color} Add User \e[om"
+useradd expense &>>log_file
+echo $?
 
-echo -e "\e[36m Creating Directory \e[om"
-mkdir /app
+echo -e "${color} Creating Directory \e[om"
+mkdir /app &>>log_file
+echo $?
 
-echo -e "\e[36m Downloading Conten File \e[om"
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip
+echo -e "${color} Downloading Conten File \e[om"
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
+echo $?
 
-echo -e "\e[36m Extracting Downloaded Content \e[om"
+echo -e "${color} Extracting Downloaded Content \e[om"
 cd /app
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>log_file
+echo $?
 
-echo -e "\e[36m Creating Directory \e[om"
+echo -e "${color} Creating Directory \e[om"
 cd /app
+echo $?
 
-echo -e "\e[36m Install Nodejs Dependency File \e[om"
+echo -e "${color} Install Nodejs Dependency File \e[om"
 npm install
+echo $?
 
-echo -e "\e[36m Install Mysql Schema \e[om"
-dnf install mysql -y
-mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+echo -e "${color} Install Mysql Schema \e[om"
+dnf install mysql -y &>>log_file
+mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
+echo $?
 
-echo -e "\e[36m Start Backend Server \e[om"
+echo -e "${color} Start Backend Server \e[om"
 systemctl daemon-reload
 systemctl enable backend
-systemctl restart backend
+systemctl restart backend &>>log_file
+echo $?
 

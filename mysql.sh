@@ -1,16 +1,25 @@
+log_file=/tmp/expense.log
+color="\e[36m"
 
-echo -e "\e[36 Disable Old Mysql \e[om"
-dnf module disable mysql -y &>>/tmp/expense.log
+echo -e "${color} Disable Old Mysql \e[om"
+dnf module disable mysql -y &>>log_file
+echo $?
 
-echo -e "\e[36m Copying Mysql Repo File \e[om"
-cp mysql.repo /etc/yum.repos.d/mysql.repo &>>/tmp/expense.log
+echo -e "${color} Copying Mysql Repo File \e[om"
+cp mysql.repo /etc/yum.repos.d/mysql.repo &>>log_file
+echo $?
 
-echo -e "\e[36m Install Mysql Server \e[om"
-dnf install mysql-community-server -y &>>/tmp/expense.log
+echo -e "${color} Install Mysql Server \e[om"
+dnf install mysql-community-server -y &>>log_file
+echo $?
 
-echo -e "\e[36m Start Mysql Server \e[om"
-systemctl enable mysqld  &>>/tmp/expense.log
-systemctl start mysqld &>>/tmp/expense.log
+echo -e "${color} Start Mysql Server \e[om"
+systemctl enable mysqld  &>>log_file
+echo $?
 
-echo -e "\e[36m Mysql Security With Password \e[om"
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>/tmp/expense.log
+systemctl start mysqld &>>log_file
+echo $?
+
+echo -e "${color} Mysql Security With Password \e[om"
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>log_file
+echo $?
