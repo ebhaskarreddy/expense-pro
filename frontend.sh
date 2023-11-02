@@ -1,4 +1,4 @@
-echo -e "\e[36m Installing Nginx \e[om"
+echo -e "\e[32m Installing Nginx \e[om"
 
 dnf install nginx -y
 
@@ -15,7 +15,7 @@ echo -e "\e[36m Extracting Downloaded Aplication Conten \e[om"
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
-echo -e "\e[36m Starting Nginx Service \e[om"
+echo -e "\e[34m Starting Nginx Service \e[om"
 systemctl enable nginx
 systemctl restart nginx
 
