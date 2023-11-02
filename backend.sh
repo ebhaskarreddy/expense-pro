@@ -38,10 +38,6 @@ cd /app
 unzip /tmp/backend.zip &>>log_file
 echo $?
 
-echo -e "${color} Creating Directory \e[om"
-cd /app
-echo $?
-
 echo -e "${color} Install Nodejs Dependency File \e[om"
 npm install
 echo $?
