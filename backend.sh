@@ -44,12 +44,18 @@ echo -e "${color} Delete Old Application Content \e[om"
 rm -rf /app* &>>log_file
 status_check
 
-echo -e "${color} Downloading Conten File \e[om"
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
-status_check
+#echo -e "${color} Downloading Conten File \e[om"
+#curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
+#status_check
 
-echo -e "${color} Extracting Downloaded Content \e[om"
-unzip /tmp/backend.zip &>>log_file
+#echo -e "${color} Extracting Downloaded Content \e[om"
+#unzip /tmp/backend.zip &>>log_file
+#status_check
+
+echo -e "${color} Downloading Conten File And Extract It \e[om"
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip
+cd /app
+unzip /tmp/backend.zip
 status_check
 
 echo -e "${color} Install Nodejs Dependency File \e[om"
