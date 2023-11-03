@@ -45,12 +45,14 @@ useradd expense &>>log_file
       fi
     fi
 
-echo -e "${color} Creating Appliction Directory \e[om"
-mkdir /app &>>log_file
-if [ $? -eq 0 ]; then
-  echo -e "\e[32m SUCCESS \e[0m"
-  else
-    echo -e "\e[33m FAILURE \e[0m"
+if [ ! -d /app ]; then
+  echo -e "${color} Creating Appliction Directory \e[om"
+  mkdir /app &>>log_file
+  if [ $? -eq 0 ]; then
+    echo -e "\e[32m SUCCESS \e[0m"
+    else
+      echo -e "\e[33m FAILURE \e[0m"
+      fi
     fi
 
 echo -e "${color} Delete Old Application Content \e[om"
