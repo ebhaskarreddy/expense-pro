@@ -34,11 +34,14 @@ if [ $? -eq 0 ]; then
     fi
 
 echo -e "${color} Addapplication User \e[om"
+id expense &>>log_file
+if [ $? -ne 0 ]; then
 useradd expense &>>log_file
 if [ $? -eq 0 ]; then
   echo -e "\e[32m SUCCESS \e[0m"
   else
     echo -e "\e[33m FAILURE \e[0m"
+    fi
     fi
 
 echo -e "${color} Creating Appliction Directory \e[om"
