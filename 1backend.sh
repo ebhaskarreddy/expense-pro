@@ -1,5 +1,6 @@
 log_file=/tmp/expense.log
 color="\e[36m"
+MYSQL_ROOT_PASSWORD=$1
 
 status_check(){
   if [ $? -eq 0 ]; then
@@ -63,8 +64,8 @@ dnf install mysql -y &>>log_file
 status_check
 
 #got exitstatus 1. cant update password file
-echo -e "${color}  Load Schema  \e[0m "
-mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
+echo -e "${color}  Load Schema  \e[0m " # HERE PASSWOORD HARDCODED
+mysql -h mysql-dev.rdevops650nline.online -uroot -p${MYSQL_ROOT_PASSWORD} < /app/schema/backend.sql &>>log_file
 echo $?
 
 echo -e "${color}  Start Backend service  \e[0m "
