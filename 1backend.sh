@@ -29,11 +29,11 @@ systemctl daemon-reload
 
 echo -e "${color} Add Application User \e[0m "
 useradd expense &>>log_file
-status_check
+echo $?
 
 echo -e "${color} Creat Application Directory \e[0m "
 mkdir /app &>>log_file
-status_check
+echo $?
 
 echo -e "${color} Delete Old Application Content \e[0m "
 rm -rf /app/* &>>log_file
@@ -58,7 +58,7 @@ status_check
 
 echo -e "${color}  Load Schema  \e[0m "
 mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
-status_check
+echo $?
 
 echo -e "${color}  Start Backend service  \e[0m "
 systemctl daemon-reload  &>>log_file
