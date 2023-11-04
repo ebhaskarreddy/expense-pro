@@ -32,7 +32,11 @@ id expense &>>log_file
 if [ $? -ne 0 ]; then
   echo -e "${color} Add Application User \e[0m "
   useradd expense &>>log_file
-  status_check
+  if [ $? -eq 0 ]; then
+      echo -e "\e[32m SUCCESS \e[0m"
+      else
+      echo -e "\e[33m FAILURE \e[0m"
+       fi
 fi
 
 # here i get error as exit status 1 . means cant update passwrd file
