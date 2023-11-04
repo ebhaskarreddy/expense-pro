@@ -50,11 +50,11 @@ echo -e "${color} Download the Nodejs Dependencies \e[0m "
 npm install &>>log_file
 status_check
 
+systemctl daemon-reload
+
 echo -e "${color} Install Mysql Client to Load schema  \e[0m "
 dnf install mysql -y &>>log_file
 status_check
-
-systemctl daemon-reload
 
 echo -e "${color}  Load Schema  \e[0m "
 mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
