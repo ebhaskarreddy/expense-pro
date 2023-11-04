@@ -39,7 +39,7 @@ fi
 if [ ! -d /app ]; then
 echo -e "${color} Creat Application Directory \e[0m "
   mkdir /app &>>log_file
-  echo $?
+  status_check
 fi
 echo -e "${color} Delete Old Application Content \e[0m "
 rm -rf /app/* &>>log_file
