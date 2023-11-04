@@ -14,7 +14,7 @@ dnf module disable nodejs -y &>>log_file
 status_check
 
 echo -e "${color} Enable Nodejs 18 Version \e[0m "
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>>log_file
 status_check
 
 echo -e "${color} Instal Nodejs \e[0m "
@@ -53,6 +53,8 @@ status_check
 echo -e "${color} Install Mysql Client to Load schema  \e[0m "
 dnf install mysql -y &>>log_file
 status_check
+
+systemctl daemon-reload
 
 echo -e "${color}  Load Schema  \e[0m "
 mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
