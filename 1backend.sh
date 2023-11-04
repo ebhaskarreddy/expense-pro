@@ -32,18 +32,15 @@ id expense &>>log_file
 if [ $? -ne 0 ]; then
   echo -e "${color} Add Application User \e[0m "
   useradd expense &>>log_file
-  if [ $? -eq 0 ]; then
-      echo -e "\e[32m SUCCESS \e[0m"
-      else
-      echo -e "\e[33m FAILURE \e[0m"
-       fi
+  status_check
 fi
 
 # here i get error as exit status 1 . means cant update passwrd file
+if [ ! -d /app ]; then
 echo -e "${color} Creat Application Directory \e[0m "
-mkdir /app &>>log_file
-echo $?
-
+  mkdir /app &>>log_file
+  echo $?
+fi
 echo -e "${color} Delete Old Application Content \e[0m "
 rm -rf /app/* &>>log_file
 status_check
