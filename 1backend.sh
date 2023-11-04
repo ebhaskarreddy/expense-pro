@@ -25,6 +25,8 @@ echo -e "${color} Copy Backend Service File \e[0m "
 cp backend.service /etc/systemd/system/backend.service &>>log_file
 status_check
 
+systemctl daemon-reload
+
 echo -e "${color} Add Application User \e[0m "
 useradd expense &>>log_file
 status_check
@@ -49,8 +51,6 @@ status_check
 echo -e "${color} Download the Nodejs Dependencies \e[0m "
 npm install &>>log_file
 status_check
-
-systemctl daemon-reload
 
 echo -e "${color} Install Mysql Client to Load schema  \e[0m "
 dnf install mysql -y &>>log_file
