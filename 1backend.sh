@@ -1,5 +1,11 @@
 log_file=/tmp/expense.log
 color="\e[36m"
+
+if [ -z "$1" ]; then
+  echo PASSWORD INPUT MISSING
+  exit
+  fi
+
 MYSQL_ROOT_PASSWORD=$1
 
 status_check(){
