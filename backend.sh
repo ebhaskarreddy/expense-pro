@@ -49,15 +49,19 @@ curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip 
 status_check
 
 echo -e "${color} Extracting Downloaded Content \e[om"
+cd /app
 unzip /tmp/backend.zip &>>log_file
 status_check
 
 echo -e "${color} Install Nodejs Dependency File \e[om"
-npm install
+npm install &>>log_file
 status_check
 
-echo -e "${color} Install Mysql Schema \e[om"
+echo -e "${color} Install Mysql Client \e[om"
 dnf install mysql -y &>>log_file
+status_check
+
+echo -e "${color} install Mysql Schema \e[om"
 mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
 status_check
 
