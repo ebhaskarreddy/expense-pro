@@ -27,10 +27,15 @@ status_check
 
 systemctl daemon-reload
 
-echo -e "${color} Add Application User \e[0m "
-useradd expense &>>log_file
-echo $?
+# i got error here exit status 9 .it means user name already use , it can handle by
+id expense &>>log_file
+if [ $? -ne 0 ]; then
+  echo -e "${color} Add Application User \e[0m "
+  useradd expense &>>log_file
+  status_check
+fi
 
+# here i get error as exit status 1 . means cant update passwrd file
 echo -e "${color} Creat Application Directory \e[0m "
 mkdir /app &>>log_file
 echo $?
@@ -56,6 +61,7 @@ echo -e "${color} Install Mysql Client to Load schema  \e[0m "
 dnf install mysql -y &>>log_file
 status_check
 
+#got exitstatus 1. cant update password file
 echo -e "${color}  Load Schema  \e[0m "
 mysql -h mysql-dev.rdevops650nline.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
 echo $?
