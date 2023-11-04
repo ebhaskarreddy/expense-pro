@@ -33,6 +33,10 @@ echo -e "${color} Creat Application Directory \e[0m "
 mkdir /app &>>log_file
 status_check
 
+echo -e "${color} Delete Old Application Content \e[0m "
+rm -rf /app/* &>>log_file
+status_check
+
 echo -e "${color} Download Application Content \e[0m "
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
 status_check
