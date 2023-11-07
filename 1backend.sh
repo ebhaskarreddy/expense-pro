@@ -62,7 +62,7 @@ status_check
 
 #got exitstatus 1. cant update password file
 echo -e "${color}  Load Schema  \e[0m " # HERE PASSWOORD HARDCODED
-mysql -h mysql-dev.rdevops650nline.online -uroot -p${MYSQL_ROOT_PASSWORD} < /app/schema/backend.sql &>>log_file
+mysql -h mysql-dev.rdevops650nline.online -uroot -p${MYSQL_ROOT_PASSWORD} < /app/schema/backend.sql
 status_check
 
 echo -e "${color}  Start Backend service  \e[0m "
